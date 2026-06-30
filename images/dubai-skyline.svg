@@ -1,0 +1,68 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 -70 1600 530" preserveAspectRatio="xMidYMax meet" fill="currentColor">
+  <!-- DUBAI SKYLINE SILHOUETTE — single colour, use with low opacity over navy -->
+  <!-- far-left low cluster -->
+  <rect x="0"   y="360" width="34"  height="100"/>
+  <rect x="38"  y="330" width="26"  height="130"/>
+  <rect x="70"  y="300" width="40"  height="160"/>
+  <rect x="116" y="345" width="24"  height="115"/>
+  <!-- left mid towers -->
+  <polygon points="150,460 150,250 168,232 186,250 186,460"/>
+  <rect x="196" y="290" width="30" height="170"/>
+  <rect x="232" y="320" width="20" height="140"/>
+  <!-- Emirates Towers: two tapered triangular crowns -->
+  <polygon points="262,460 262,210 286,150 310,210 310,460"/>
+  <polygon points="320,460 320,180 342,120 364,180 364,460"/>
+  <!-- stepped tower -->
+  <polygon points="378,460 378,260 392,260 392,230 416,230 416,260 430,260 430,460"/>
+  <rect x="440" y="300" width="26" height="160"/>
+  <!-- Burj Al Arab — billowing sail / dhow shape -->
+  <path d="M474 460 L474 250 Q474 110 566 70 Q556 150 540 250 L540 460 Z"/>
+  <!-- mast tip on the sail -->
+  <rect x="565" y="40" width="3" height="40"/>
+  <!-- gap of low buildings -->
+  <rect x="584" y="370" width="30" height="90"/>
+  <rect x="618" y="330" width="22" height="130"/>
+  <rect x="644" y="350" width="28" height="110"/>
+  <!-- twisted / tiered tower (Cayan-like) -->
+  <polygon points="680,460 680,220 700,210 700,200 722,190 722,180 740,170 740,460"/>
+  <!-- approach towers to Burj Khalifa -->
+  <rect x="752" y="280" width="24" height="180"/>
+  <rect x="782" y="320" width="18" height="140"/>
+  <!-- BURJ KHALIFA — central, tiered base, tall slender spire -->
+  <polygon points="806,460 806,150 818,150 818,118 830,118 830,150 842,150
+                   842,96 852,96 852,150 862,150
+                   862,150 874,150 874,150 886,150
+                   886,118 898,118 898,150 910,150
+                   910,460"/>
+  <!-- mid stepped tiers rising to the centre -->
+  <polygon points="830,150 830,60 842,60 842,150"/>
+  <polygon points="874,150 874,60 886,60 886,150"/>
+  <polygon points="842,96 842,18 852,18 852,96 862,96 862,18 852,18"/>
+  <!-- long slender spire -->
+  <polygon points="850,18 854,-66 858,18"/>
+  <!-- right approach towers -->
+  <rect x="924" y="300" width="22" height="160"/>
+  <rect x="952" y="270" width="26" height="190"/>
+  <polygon points="986,460 986,230 1002,214 1018,230 1018,460"/>
+  <!-- right mid cluster -->
+  <rect x="1028" y="320" width="24" height="140"/>
+  <rect x="1058" y="290" width="30" height="170"/>
+  <polygon points="1094,460 1094,250 1108,238 1122,250 1122,460"/>
+  <rect x="1130" y="330" width="20" height="130"/>
+  <!-- a tower with antenna spire (Marina-like) -->
+  <rect x="1158" y="240" width="34" height="220"/>
+  <rect x="1173" y="186" width="4"  height="54"/>
+  <!-- right falling cluster -->
+  <rect x="1202" y="330" width="26" height="130"/>
+  <rect x="1234" y="300" width="22" height="160"/>
+  <polygon points="1264,460 1264,260 1278,246 1292,260 1292,460"/>
+  <rect x="1302" y="340" width="24" height="120"/>
+  <rect x="1332" y="360" width="28" height="100"/>
+  <rect x="1366" y="330" width="22" height="130"/>
+  <rect x="1396" y="370" width="30" height="90"/>
+  <rect x="1432" y="350" width="24" height="110"/>
+  <rect x="1464" y="380" width="34" height="80"/>
+  <rect x="1506" y="360" width="26" height="100"/>
+  <rect x="1540" y="385" width="30" height="75"/>
+  <rect x="1576" y="370" width="24" height="90"/>
+</svg>
