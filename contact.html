@@ -74,6 +74,9 @@
       <h3 style="margin-bottom:6px" data-i18n="ctp_form_t">Request your estimate</h3>
       <p style="margin-bottom:22px" data-i18n="ctp_form_sub">We reply within one business day.</p>
       <form data-mailto>
+        <div class="hp-field" aria-hidden="true">
+          <label>Company<input type="text" name="company" tabindex="-1" autocomplete="off"></label>
+        </div>
         <div class="form-row">
           <div class="field">
             <label for="name" data-i18n="ctp_l_name">Full name</label>
@@ -106,6 +109,7 @@
           <textarea id="message" name="message" data-i18n-ph="ctp_ph_msg" placeholder="Tell us about your property and goals."></textarea>
         </div>
         <button class="btn btn-gold btn-lg" type="submit" style="width:100%;justify-content:center" data-i18n="ctp_submit">Send my request</button>
+        <div class="form-status" role="status" aria-live="polite"></div>
         <p style="font-size:.82rem;margin-top:14px"><span data-i18n="ctp_prefer">Prefer to chat?</span> <a href="https://wa.me/971568975707" rel="nofollow" style="color:var(--gold-dark);font-weight:600" data-i18n="ctp_prefer_link">Message us on WhatsApp</a>.</p>
       </form>
     </div>
