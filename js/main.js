@@ -2,6 +2,20 @@
    English is the default (and the source for SEO). The switch only
    changes on-page visible text via [data-i18n] / [data-i18n-ph]. */
 
+/* ============================================================
+   CONFIG — paste your own IDs here (leave empty to disable).
+   • formEndpoint : Formspree/Getform/Basin URL for the estimate form.
+                    Empty => the form falls back to opening the email app.
+   • ga4Id        : GA4 Measurement ID, e.g. "G-XXXXXXXXXX".
+   • metaPixelId  : Meta (Facebook) Pixel ID, e.g. "123456789012345".
+   Analytics load ONLY after the visitor accepts cookies.
+   ============================================================ */
+var DM_CONFIG = {
+  formEndpoint: "",
+  ga4Id: "",
+  metaPixelId: ""
+};
+
 var DICT = {
   en: {
     /* common */
@@ -11,6 +25,7 @@ var DICT = {
     foot_h_company:"Company", foot_h_owners:"Owners", foot_h_contact:"Contact",
     foot_about_us:"About us", foot_services:"Services", foot_platform:"Owner platform", foot_contact:"Contact",
     foot_estimate:"Free revenue estimate", foot_login:"Owner login", foot_how:"How the platform works",
+    foot_privacy:"Privacy policy",
     foot_rights:"© 2026 Dar Mama. All rights reserved.", foot_loc:"Dubai, United Arab Emirates · DET holiday homes (formerly DTCM)",
     wa_chat:"Chat",
     /* home */
@@ -137,6 +152,13 @@ var DICT = {
     ctp_info_p:"We believe in personalised communication — including being on the platform you actually use.",
     ctp_wa:"WhatsApp", ctp_phone:"Phone", ctp_email:"Email", ctp_loc:"Location", ctp_loc_v:"Dubai, United Arab Emirates",
     ctp_owner_q:"Already an owner?", ctp_owner_link:"Log in to your platform",
+    /* form status + consent (injected) */
+    form_ok:"Thank you — your request has been sent. We'll reply within one business day.",
+    form_err:"Something went wrong. Please WhatsApp us or email contact@dar-mama.com.",
+    form_mail:"Opening your email app to send the request. If nothing happens, email us at contact@dar-mama.com.",
+    consent_txt:"We use cookies for analytics to improve the site. See our",
+    consent_link:"privacy policy",
+    consent_accept:"Accept", consent_decline:"Decline",
     /* check-in: common + home promo + services callout */
     nav_checkin:"Check-in", nav_blog:"Blog", foot_checkin:"Check-in service", foot_blog:"Blog & guides", trust_label:"We list your property on",
     h_ci_eyebrow:"Standalone service",
@@ -179,6 +201,7 @@ var DICT = {
     foot_h_company:"Société", foot_h_owners:"Propriétaires", foot_h_contact:"Contact",
     foot_about_us:"À propos", foot_services:"Services", foot_platform:"Espace propriétaire", foot_contact:"Contact",
     foot_estimate:"Estimation gratuite", foot_login:"Connexion propriétaire", foot_how:"Le fonctionnement de la plateforme",
+    foot_privacy:"Politique de confidentialité",
     foot_rights:"© 2026 Dar Mama. Tous droits réservés.", foot_loc:"Dubaï, Émirats arabes unis · Licence holiday homes DET (ex-DTCM)",
     wa_chat:"Discuter",
     h_eyebrow:"Gestion locative courte durée · Dubaï",
@@ -300,6 +323,12 @@ var DICT = {
     ctp_info_p:"Nous croyons à une communication personnalisée — y compris sur le canal que vous utilisez vraiment.",
     ctp_wa:"WhatsApp", ctp_phone:"Téléphone", ctp_email:"E-mail", ctp_loc:"Localisation", ctp_loc_v:"Dubaï, Émirats arabes unis",
     ctp_owner_q:"Déjà client ?", ctp_owner_link:"Connectez-vous à votre plateforme",
+    form_ok:"Merci — votre demande a été envoyée. Nous répondons sous un jour ouvré.",
+    form_err:"Une erreur est survenue. Écrivez-nous sur WhatsApp ou à contact@dar-mama.com.",
+    form_mail:"Ouverture de votre application e-mail pour envoyer la demande. Si rien ne se passe, écrivez-nous à contact@dar-mama.com.",
+    consent_txt:"Nous utilisons des cookies de mesure d'audience pour améliorer le site. Voir notre",
+    consent_link:"politique de confidentialité",
+    consent_accept:"Accepter", consent_decline:"Refuser",
     nav_checkin:"Check-in", nav_blog:"Blog", foot_checkin:"Service de check-in", foot_blog:"Blog & guides", trust_label:"Nous publions votre bien sur",
     h_ci_eyebrow:"Service à la carte",
     h_ci_title:"Besoin du check-in uniquement ? On couvre Dubaï, 24/7.",
@@ -335,6 +364,12 @@ var DICT = {
   }
 };
 
+function currentLang(){
+  var l = "en";
+  try { l = localStorage.getItem("darmama_lang") || "en"; } catch(e){}
+  return DICT[l] ? l : "en";
+}
+
 function applyLang(lang){
   if(!DICT[lang]) lang = "en";
   var d = DICT[lang];
@@ -353,10 +388,95 @@ function applyLang(lang){
   try { localStorage.setItem("darmama_lang", lang); } catch(e){}
 }
 
+/* ---------- analytics (loaded only after consent) ---------- */
+var DM_ANALYTICS_LOADED = false;
+function dmLoadAnalytics(){
+  if(DM_ANALYTICS_LOADED) return;
+  DM_ANALYTICS_LOADED = true;
+  if(DM_CONFIG.ga4Id){
+    var s = document.createElement("script");
+    s.async = true; s.src = "https://www.googletagmanager.com/gtag/js?id=" + DM_CONFIG.ga4Id;
+    document.head.appendChild(s);
+    window.dataLayer = window.dataLayer || [];
+    window.gtag = function(){ dataLayer.push(arguments); };
+    gtag("js", new Date());
+    gtag("config", DM_CONFIG.ga4Id);
+  }
+  if(DM_CONFIG.metaPixelId){
+    !function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+      n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;
+      n.push=n;n.loaded=!0;n.version="2.0";n.queue=[];t=b.createElement(e);t.async=!0;
+      t.src=v;s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)}(window,
+      document,"script","https://connect.facebook.net/en_US/fbevents.js");
+    fbq("init", DM_CONFIG.metaPixelId); fbq("track", "PageView");
+  }
+}
+function dmTrack(name, params){
+  try { if(window.gtag) gtag("event", name, params||{}); } catch(e){}
+  try { if(window.fbq) fbq("trackCustom", name, params||{}); } catch(e){}
+}
+
+/* ---------- cookie consent ---------- */
+function dmConsentState(){ try { return localStorage.getItem("darmama_consent"); } catch(e){ return null; } }
+function dmSetConsent(v){ try { localStorage.setItem("darmama_consent", v); } catch(e){} }
+
+function dmShowConsent(){
+  if(dmConsentState()) return;
+  var d = DICT[currentLang()];
+  var bar = document.createElement("div");
+  bar.className = "dm-consent";
+  bar.setAttribute("role", "dialog");
+  bar.setAttribute("aria-label", "Cookies");
+  bar.innerHTML =
+    '<p>' + d.consent_txt + ' <a href="privacy.html">' + d.consent_link + '</a>.</p>' +
+    '<div class="dm-btns">' +
+      '<button type="button" class="dm-decline">' + d.consent_decline + '</button>' +
+      '<button type="button" class="dm-accept">' + d.consent_accept + '</button>' +
+    '</div>';
+  document.body.appendChild(bar);
+  bar.querySelector(".dm-accept").addEventListener("click", function(){
+    dmSetConsent("granted"); dmLoadAnalytics(); bar.remove();
+  });
+  bar.querySelector(".dm-decline").addEventListener("click", function(){
+    dmSetConsent("denied"); bar.remove();
+  });
+}
+
+/* ---------- inject minimal styles + footer privacy link (site-wide) ---------- */
+function dmInjectChrome(){
+  if(!document.getElementById("dm-inline-style")){
+    var css = ""
+      + ".dm-consent{position:fixed;left:16px;right:16px;bottom:16px;z-index:80;max-width:560px;margin-inline:auto;background:#0f1622;color:#fff;border-radius:14px;padding:18px 20px;box-shadow:0 24px 60px rgba(15,22,34,.16);display:flex;gap:16px;align-items:center;flex-wrap:wrap}"
+      + ".dm-consent p{color:rgba(255,255,255,.82);font-size:.9rem;margin:0;flex:1;min-width:220px}"
+      + ".dm-consent a{color:#c2a36b;text-decoration:underline}"
+      + ".dm-consent .dm-btns{display:flex;gap:10px;flex-wrap:wrap}"
+      + ".dm-consent button{border:0;cursor:pointer;font-family:'Inter',sans-serif;font-weight:600;font-size:.85rem;padding:10px 18px;border-radius:999px}"
+      + ".dm-consent .dm-accept{background:#c2a36b;color:#0f1622}"
+      + ".dm-consent .dm-decline{background:rgba(255,255,255,.12);color:#fff}"
+      + ".form-status{margin-top:14px;padding:12px 14px;border-radius:10px;font-size:.92rem;font-weight:500;display:none}"
+      + ".form-status.ok{display:block;background:rgba(31,158,106,.12);color:#1f9e6a;border:1px solid rgba(31,158,106,.3)}"
+      + ".form-status.err{display:block;background:rgba(178,58,58,.1);color:#b23a3a;border:1px solid rgba(178,58,58,.3)}"
+      + ".hp-field{position:absolute!important;left:-9999px!important;width:1px;height:1px;overflow:hidden}"
+      + ".footer-bottom .dm-priv{color:rgba(255,255,255,.5)}.footer-bottom .dm-priv:hover{color:#c2a36b}";
+    var st = document.createElement("style");
+    st.id = "dm-inline-style"; st.textContent = css;
+    document.head.appendChild(st);
+  }
+  var fb = document.querySelector(".footer-bottom");
+  if(fb && !fb.querySelector(".dm-priv")){
+    var a = document.createElement("a");
+    a.className = "dm-priv"; a.href = "privacy.html";
+    a.setAttribute("data-i18n", "foot_privacy");
+    a.textContent = DICT[currentLang()].foot_privacy;
+    fb.appendChild(a);
+  }
+}
+
 (function(){
   var saved = "en";
   try { saved = localStorage.getItem("darmama_lang") || "en"; } catch(e){}
   document.addEventListener("DOMContentLoaded", function(){
+    dmInjectChrome();
     applyLang(saved);
     document.querySelectorAll(".lang-switch button").forEach(function(b){
       b.addEventListener("click", function(){ applyLang(b.getAttribute("data-lang")); });
@@ -365,11 +485,23 @@ function applyLang(lang){
     var links = document.querySelector(".nav-links");
     if(toggle && links){ toggle.addEventListener("click", function(){ links.classList.toggle("open"); }); }
 
+    /* analytics: load immediately if already granted, else show the banner */
+    if(dmConsentState() === "granted"){ dmLoadAnalytics(); }
+    else if(!dmConsentState()){ dmShowConsent(); }
+
+    /* CTA / WhatsApp event tracking */
+    document.querySelectorAll('a[href*="wa.me"]').forEach(function(a){
+      a.addEventListener("click", function(){ dmTrack("whatsapp_click"); });
+    });
+    document.querySelectorAll('a[href*="app.dar-mama.com"]').forEach(function(a){
+      a.addEventListener("click", function(){ dmTrack("owner_login_click"); });
+    });
+
+    /* estimate form: real capture (backend) + email fallback + honeypot + status */
     var form = document.querySelector("form[data-mailto]");
     if(form){
-      form.addEventListener("submit", function(e){
-        e.preventDefault();
-        var fd = new FormData(form);
+      var status = form.querySelector(".form-status");
+      var mailFallback = function(fd){
         var subject = encodeURIComponent("Property owner enquiry — " + ((fd.get("name")||"Dar Mama")));
         var body = encodeURIComponent(
           "Name: " + (fd.get("name")||"") + "\n" +
@@ -378,7 +510,27 @@ function applyLang(lang){
           "Bedrooms: " + (fd.get("bedrooms")||"") + "\n\n" +
           (fd.get("message")||"")
         );
+        if(status){ status.className = "form-status ok"; status.textContent = DICT[currentLang()].form_mail; }
         window.location.href = "mailto:contact@dar-mama.com?subject=" + subject + "&body=" + body;
+      };
+      form.addEventListener("submit", function(e){
+        e.preventDefault();
+        var hp = form.querySelector('[name="company"]');
+        if(hp && hp.value){ return; } /* bot trap */
+        var fd = new FormData(form);
+        dmTrack("lead_submit", { form: "estimate" });
+        if(DM_CONFIG.formEndpoint){
+          fetch(DM_CONFIG.formEndpoint, { method:"POST", body:fd, headers:{ "Accept":"application/json" } })
+            .then(function(r){
+              if(r.ok){
+                form.reset();
+                if(status){ status.className = "form-status ok"; status.textContent = DICT[currentLang()].form_ok; }
+              } else { mailFallback(fd); }
+            })
+            .catch(function(){ mailFallback(fd); });
+        } else {
+          mailFallback(fd);
+        }
       });
     }
   });
