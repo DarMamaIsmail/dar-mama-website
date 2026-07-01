@@ -20,6 +20,7 @@
 <link rel="icon" type="image/svg+xml" href="images/symbol.svg">
 <link rel="apple-touch-icon" href="images/symbol.svg">
 <link rel="stylesheet" href="css/styles.css">
+<link rel="stylesheet" href="css/components.css">
 <script type="application/ld+json">
 {
   "@context":"https://schema.org","@type":"Service",
@@ -113,15 +114,23 @@
         <li data-i18n="svp_rm_li4">Forecasting so you can plan around seasonality</li>
       </ul>
     </div>
-    <div class="hero-mock">
-      <div class="mock-top"><b>Revenue management</b><span class="pill">Optimised</span></div>
-      <div class="mock-kpis">
-        <div class="mock-kpi"><span>Occupancy</span><b>87%</b><i>▲</i></div>
-        <div class="mock-kpi"><span>ADR</span><b>1,420</b><i>▲</i></div>
-        <div class="mock-kpi"><span>RevPAR</span><b>1,235</b><i>▲</i></div>
+    <div class="app-mock" aria-hidden="true">
+      <div class="am-bar">
+        <div class="am-title"><b>Revenue management</b><span>Marina Gate · 1 BR · June 2026</span></div>
+        <span class="am-live">Optimised</span>
       </div>
-      <div class="mock-chart">
-        <i style="height:45%"></i><i style="height:52%"></i><i style="height:60%"></i><i style="height:58%"></i><i style="height:72%"></i><i style="height:80%"></i><i style="height:76%"></i><i style="height:92%"></i>
+      <div class="am-body">
+        <div class="am-kpis">
+          <div class="am-kpi"><div class="lbl">Occupancy</div><div class="val">90%</div><div class="dlt">▲ 6 pts</div></div>
+          <div class="am-kpi"><div class="lbl">ADR</div><div class="val">1,080<small> AED</small></div><div class="dlt">▲ 4%</div></div>
+          <div class="am-kpi"><div class="lbl">RevPAR</div><div class="val">972<small> AED</small></div><div class="dlt">▲ 11%</div></div>
+        </div>
+        <div class="am-chart-card">
+          <div class="am-chart-head"><b>RevPAR trend</b><span>Last 9 months · AED</span></div>
+          <div class="am-chart">
+            <i style="height:45%"></i><i style="height:52%"></i><i style="height:60%"></i><i style="height:58%"></i><i style="height:72%"></i><i style="height:80%"></i><i style="height:76%"></i><i style="height:92%"></i><i class="cur" style="height:97%"></i>
+          </div>
+        </div>
       </div>
     </div>
   </div>

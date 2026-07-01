@@ -20,6 +20,7 @@
 <link rel="icon" type="image/svg+xml" href="images/symbol.svg">
 <link rel="apple-touch-icon" href="images/symbol.svg">
 <link rel="stylesheet" href="css/styles.css">
+<link rel="stylesheet" href="css/components.css">
 <script type="application/ld+json">
 {
   "@context":"https://schema.org","@type":"ProfessionalService","name":"Dar Mama",
@@ -28,7 +29,6 @@
   "email":"contact@dar-mama.com","telephone":"+971568975707",
   "areaServed":{"@type":"City","name":"Dubai"},
   "address":{"@type":"PostalAddress","addressLocality":"Dubai","addressCountry":"AE"},
-  "aggregateRating":{"@type":"AggregateRating","ratingValue":"4.97","bestRating":"5","ratingCount":"100"},
   "sameAs":["https://www.instagram.com/dar_mama_dubai/","https://www.linkedin.com/company/dar-mama/"]
 }
 </script>
@@ -91,15 +91,28 @@
         <div><b>DET</b><span data-i18n="h_trust_s3">Licensed holiday homes</span></div>
       </div>
     </div>
-    <div class="hero-mock" aria-hidden="true">
-      <div class="mock-top"><b>Marina Gate · Owner view</b><span class="pill">Live</span></div>
-      <div class="mock-kpis">
-        <div class="mock-kpi"><span>Occupancy</span><b>87%</b><i>▲ 6%</i></div>
-        <div class="mock-kpi"><span>ADR</span><b>1,420</b><i>▲ 3%</i></div>
-        <div class="mock-kpi"><span>RevPAR</span><b>1,235</b><i>▲ 9%</i></div>
+    <div class="app-mock" aria-hidden="true">
+      <div class="am-bar">
+        <div class="am-title"><b>Owner dashboard</b><span>Marina Gate · 1 BR · June 2026</span></div>
+        <span class="am-live">Live</span>
       </div>
-      <div class="mock-chart">
-        <i style="height:42%"></i><i style="height:55%"></i><i style="height:48%"></i><i style="height:68%"></i><i style="height:60%"></i><i style="height:78%"></i><i style="height:72%"></i><i style="height:90%"></i><i style="height:84%"></i>
+      <div class="am-body">
+        <div class="am-kpis">
+          <div class="am-kpi"><div class="lbl">Occupancy</div><div class="val">90%</div><div class="dlt">▲ 6 pts</div></div>
+          <div class="am-kpi"><div class="lbl">ADR</div><div class="val">1,080<small> AED</small></div><div class="dlt">▲ 4%</div></div>
+          <div class="am-kpi"><div class="lbl">RevPAR</div><div class="val">972<small> AED</small></div><div class="dlt">▲ 11%</div></div>
+        </div>
+        <div class="am-kpis">
+          <div class="am-kpi"><div class="lbl">Gross revenue</div><div class="val">30,240<small> AED</small></div><div class="dlt">▲ 9%</div></div>
+          <div class="am-kpi"><div class="lbl">Owner net</div><div class="val">20,542<small> AED</small></div><div class="dlt">▲ 8%</div></div>
+          <div class="am-kpi"><div class="lbl">Guest rating</div><div class="val">4.97<small> ★</small></div><div class="dlt flat">120 reviews</div></div>
+        </div>
+        <div class="am-chart-card">
+          <div class="am-chart-head"><b>Monthly net revenue</b><span>Last 9 months · AED</span></div>
+          <div class="am-chart">
+            <i style="height:46%"></i><i style="height:52%"></i><i style="height:58%"></i><i style="height:55%"></i><i style="height:68%"></i><i style="height:74%"></i><i style="height:82%"></i><i style="height:90%"></i><i class="cur" style="height:97%"></i>
+          </div>
+        </div>
       </div>
     </div>
   </div>
@@ -165,15 +178,19 @@
         <a class="btn btn-ghost on-dark" href="https://app.dar-mama.com" rel="nofollow" data-i18n="h_op_cta2">Owner login</a>
       </div>
     </div>
-    <div class="hero-mock">
-      <div class="mock-top"><b>Monthly statement · June</b><span class="pill">Reconciled</span></div>
-      <div class="mock-kpis">
-        <div class="mock-kpi"><span>Gross</span><b>3,025</b></div>
-        <div class="mock-kpi"><span>Fees &amp; costs</span><b>1,380</b></div>
-        <div class="mock-kpi"><span>Net payout</span><b>1,645</b><i>AED</i></div>
+    <div class="stmt-mock" aria-hidden="true">
+      <div class="sm-head">
+        <div><div class="sm-brand">Monthly statement</div><div class="sm-sub">Marina Gate · 1 BR · June 2026</div></div>
+        <span class="sm-badge">Reconciled</span>
       </div>
-      <div class="mock-chart">
-        <i style="height:60%"></i><i style="height:72%"></i><i style="height:66%"></i><i style="height:80%"></i><i style="height:75%"></i><i style="height:88%"></i><i style="height:82%"></i>
+      <div class="sm-body">
+        <div class="sm-line gross"><span class="k">Gross booking revenue</span><span class="v">30,240</span></div>
+        <div class="sm-line"><span class="k">OTA commission</span><span class="v neg">− 3,630</span></div>
+        <div class="sm-line"><span class="k">Cleaning</span><span class="v neg">− 1,440</span></div>
+        <div class="sm-line"><span class="k">Tourism Dirham</span><span class="v neg">− 420</span></div>
+        <div class="sm-line"><span class="k">Dar Mama fee (17%)</span><span class="v neg">− 4,208</span></div>
+        <div class="sm-net"><span class="k">Net payout</span><span class="v">20,542<small>AED</small></span></div>
+        <div class="sm-foot">Paid to owner · 03/07/2026 · Ref DM-2026-06-MG</div>
       </div>
     </div>
   </div>
