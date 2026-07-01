@@ -1,0 +1,63 @@
+
+/* ============================================================
+   Owner-platform UI reproductions (marketing visuals)
+   Faithful to the real Dar Mama owner dashboard & statement.
+   Numbers are illustrative but internally coherent (gross → net).
+   ============================================================ */
+.app-mock{background:linear-gradient(180deg,#fff,#f7f8fb);border-radius:20px;
+  box-shadow:var(--shadow-lg);border:1px solid rgba(15,22,34,.06);overflow:hidden;color:var(--ink)}
+.app-mock .am-bar{display:flex;align-items:center;justify-content:space-between;gap:12px;
+  padding:14px 18px;background:var(--navy);color:#fff}
+.app-mock .am-title{display:flex;flex-direction:column;line-height:1.25}
+.app-mock .am-title b{font-family:"Fraunces",serif;font-size:1rem;color:#fff}
+.app-mock .am-title span{font-size:.7rem;color:rgba(255,255,255,.62);letter-spacing:.02em;margin-top:2px}
+.app-mock .am-live{font-size:.66rem;font-weight:600;color:#8fe6bd;background:rgba(31,158,106,.2);
+  padding:4px 11px;border-radius:999px;display:inline-flex;align-items:center;gap:6px;white-space:nowrap}
+.app-mock .am-live::before{content:"";width:6px;height:6px;border-radius:50%;background:#2fd88a;
+  box-shadow:0 0 0 3px rgba(47,216,138,.25)}
+.app-mock .am-body{padding:16px}
+.am-kpis{display:grid;grid-template-columns:repeat(3,1fr);gap:10px}
+.am-kpis + .am-kpis{margin-top:10px}
+.am-kpi{background:#fff;border:1px solid var(--line);border-radius:12px;padding:12px 13px}
+.am-kpi .lbl{font-size:.62rem;color:var(--muted);text-transform:uppercase;letter-spacing:.06em;font-weight:600}
+.am-kpi .val{font-family:"Fraunces",serif;font-size:1.32rem;color:var(--navy);line-height:1.1;margin-top:6px;
+  font-variant-numeric:tabular-nums}
+.am-kpi .val small{font-size:.6rem;font-weight:600;color:var(--muted);font-family:"Inter"}
+.am-kpi .dlt{font-size:.64rem;font-weight:600;color:var(--green);margin-top:4px;display:flex;align-items:center;gap:4px}
+.am-kpi .dlt.flat{color:var(--muted)}
+.am-chart-card{background:#fff;border:1px solid var(--line);border-radius:12px;padding:13px 14px;margin-top:10px}
+.am-chart-head{display:flex;align-items:baseline;justify-content:space-between;margin-bottom:11px}
+.am-chart-head b{font-size:.76rem;color:var(--navy);font-weight:600}
+.am-chart-head span{font-size:.62rem;color:var(--muted)}
+.am-chart{display:flex;align-items:flex-end;gap:6px;height:80px}
+.am-chart i{flex:1;background:linear-gradient(180deg,var(--gold),var(--gold-dark));border-radius:4px 4px 0 0;opacity:.9}
+.am-chart i.cur{background:linear-gradient(180deg,var(--teal),var(--navy));opacity:1}
+
+/* ---------- faithful monthly statement ---------- */
+.stmt-mock{background:#fff;border-radius:18px;box-shadow:var(--shadow-lg);overflow:hidden;
+  color:var(--ink);border:1px solid rgba(15,22,34,.06)}
+.stmt-mock .sm-head{padding:16px 20px;background:var(--navy);color:#fff;
+  display:flex;justify-content:space-between;align-items:flex-start;gap:12px}
+.stmt-mock .sm-brand{font-family:"Fraunces",serif;font-size:1.02rem}
+.stmt-mock .sm-sub{font-size:.68rem;color:rgba(255,255,255,.62);margin-top:3px;letter-spacing:.03em}
+.stmt-mock .sm-badge{font-size:.64rem;font-weight:600;color:#8fe6bd;background:rgba(31,158,106,.2);
+  padding:4px 11px;border-radius:999px;white-space:nowrap}
+.stmt-mock .sm-body{padding:12px 20px 18px}
+.sm-line{display:flex;justify-content:space-between;align-items:center;padding:9px 0;
+  border-bottom:1px solid var(--line);font-size:.84rem}
+.sm-line .k{color:var(--muted)}
+.sm-line .v{font-variant-numeric:tabular-nums;color:var(--ink);font-weight:500}
+.sm-line.gross .k{color:var(--navy);font-weight:600}
+.sm-line.gross .v{color:var(--navy);font-weight:600}
+.sm-line .v.neg{color:var(--muted)}
+.sm-net{display:flex;justify-content:space-between;align-items:center;margin-top:14px;padding:14px 18px;
+  background:linear-gradient(120deg,var(--navy),var(--navy-2));border-radius:12px;color:#fff}
+.sm-net .k{font-size:.72rem;color:rgba(255,255,255,.72);text-transform:uppercase;letter-spacing:.09em;font-weight:600}
+.sm-net .v{font-family:"Fraunces",serif;font-size:1.55rem;font-variant-numeric:tabular-nums;line-height:1}
+.sm-net .v small{font-size:.66rem;color:var(--gold);font-family:"Inter";margin-left:5px}
+.sm-foot{font-size:.66rem;color:var(--muted);margin-top:11px;text-align:right;letter-spacing:.01em}
+
+/* keep dashboard/statement below hero copy on small screens */
+@media (max-width:920px){
+  .hero .app-mock{order:2}
+}
