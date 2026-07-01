@@ -11,9 +11,9 @@
    Analytics load ONLY after the visitor accepts cookies.
    ============================================================ */
 var DM_CONFIG = {
-  formEndpoint: "",
-  ga4Id: "",
-  metaPixelId: ""
+  formEndpoint: "https://formspree.io/f/xwvdrqao",
+  ga4Id: "G-QNFP9NDS9P",
+  metaPixelId: "2111158046412104"
 };
 
 var DICT = {
